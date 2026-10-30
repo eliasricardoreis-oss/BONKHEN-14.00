@@ -1,0 +1,20 @@
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#090d16;color:#f4f7fb;font-family:Arial,Helvetica,sans-serif}
+body{padding:22px;background-image:radial-gradient(ellipse at 50% -20%,#1c3150 0%,#090d16 56%)}
+.shell{max-width:1080px;margin:0 auto}
+.topbar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #253247;padding:8px 0 20px}
+.brand{display:flex;align-items:center}.logo{width:42px;height:42px;line-height:40px;text-align:center;border:1px solid #4d7189;border-radius:12px;color:#60d7e8;font-size:23px;font-weight:900;margin-right:12px}
+.brandname{font-weight:900;letter-spacing:2px;font-size:17px}.brandname span{color:#60d7e8}.sub,.eyebrow{font-size:10px;letter-spacing:2px;color:#94a3b8;margin-top:5px}
+.target{border:1px solid #253247;border-radius:30px;padding:10px 14px;font-size:10px;letter-spacing:1px;color:#94a3b8}.target i,.dot{display:inline-block;width:7px;height:7px;background:#70d6a1;border-radius:50%;margin-right:7px}.target b{color:#f4f7fb;margin-left:8px}
+.hero{padding:36px 4px 26px}.hero h1{font-size:56px;letter-spacing:-2px;margin:8px 0}.hero h1 em{font-style:normal;color:#60d7e8}.hero p{max-width:680px;color:#b2c0d1;line-height:1.6;margin:0}.statusline{margin-top:20px;font-size:11px;color:#94a3b8;display:flex;align-items:center}.statusline b{color:#f4b860;letter-spacing:1px;margin-right:8px}.statusline .sep{margin:0 8px;color:#53647a}.dot.amber{background:#f4b860}
+.grid{display:flex;align-items:stretch;margin:0 -8px}.grid>.panel{margin:0 8px;width:50%}.grid>.mainpanel{width:60%}.grid>.panel:not(.mainpanel){width:40%}.panel{background:#111827;border:1px solid #253247;border-radius:16px;padding:22px;box-shadow:0 16px 40px #0003}
+.panelhead{display:flex;justify-content:space-between;align-items:center}.panel h2{font-size:20px;margin:6px 0 0}.pill{font-size:9px;letter-spacing:1px;padding:7px 10px;border-radius:30px}.warn{color:#f4b860;border:1px solid #8a6738;background:#3d2d17}
+.orb{height:165px;text-align:center;padding-top:24px}.orbinner{width:116px;height:116px;margin:0 auto;border-radius:60px;border:1px solid #58c9dc;box-shadow:0 0 0 10px #60d7e80b,0 0 45px #60d7e822,inset 0 0 30px #60d7e81c;padding-top:29px}.orbinner span{display:block;font-size:30px;font-weight:800;color:#60d7e8}.orbinner small{display:block;font-size:9px;letter-spacing:2px;color:#94a3b8;margin-top:4px}
+.notice{border:1px solid #755b35;background:#332818;border-radius:10px;padding:14px}.notice b{color:#f4b860;font-size:13px}.notice p,.muted{font-size:12px;line-height:1.55;color:#b1bdcc}
+.primary,.action{display:block;width:100%;border-radius:9px;padding:14px 12px;font-weight:800;letter-spacing:1px;font-size:11px;margin-top:14px}.primary{background:#263243;color:#8291a4;border:1px solid #344358;cursor:not-allowed}.smallnote{font-size:10px;color:#8190a3;text-align:center;margin-top:10px}
+.action{background:#123443;color:#9ce9f2;border:1px solid #286275;cursor:pointer;text-align:left}.action span{float:right}.action.secondary{background:#1b2535;color:#c8d3e0;border-color:#34445a}
+.metric{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid #253247;font-size:11px;color:#94a3b8}.metric b{color:#f4f7fb;text-align:right}.metric .good{color:#70d6a1}.metric .bad{color:#f4b860}
+.logpanel{margin-top:16px;display:none}.logpanel.visible{display:block}.clear{background:transparent;border:1px solid #253247;color:#94a3b8;padding:7px 10px;border-radius:7px;font-size:9px}
+pre{white-space:pre-wrap;word-wrap:break-word;background:#080d15;border:1px solid #202d40;border-radius:9px;padding:14px;color:#9bb6c8;font-size:11px;line-height:1.7;min-height:100px}
+footer{display:flex;justify-content:space-between;padding:20px 4px;color:#718096;font-size:9px;letter-spacing:.7px}button:focus{outline:2px solid #60d7e8;outline-offset:3px}
+@media(max-width:720px){body{padding:14px}.grid{display:block;margin:0}.grid>.panel,.grid>.mainpanel,.grid>.panel:not(.mainpanel){width:100%;margin:0 0 14px}.target{font-size:0}.target b{font-size:11px}.hero{padding-top:28px}.hero h1{font-size:42px}.panel{padding:17px}footer{display:block}}
