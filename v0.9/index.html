@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d16">
+<title>BONKHEN 14.00 — Local Host</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<header><div class="logo">B</div><div><strong>BONKHEN <span>14.00</span></strong><small>PS4 WEBKIT · VERSION 0.9</small></div><div class="target">MODE LOCAL · DIAGNOSTIC</div></header>
+<main>
+<section class="intro"><p class="eyebrow">PORTAGE DE L'ISO BD-J VERS WEBKIT</p><h1>HEN <em>14.00</em></h1><p>Interface locale et contrôle d'intégrité du payload. Aucun exploit ni code natif n'est exécuté.</p><div class="lock">● &nbsp; CHARGEMENT HEN VERROUILLÉ — CHAÎNE KERNEL NON VALIDÉE</div></section>
+<section class="columns">
+<article class="panel">
+<div class="panelhead"><div><p class="eyebrow">ÉTAPE 01</p><h2>Vérifier hen.bin</h2></div><span class="tag">SHA-256</span></div>
+<p class="muted">Sélectionne le fichier <code>hen.bin</code> extrait de ton ISO. Le navigateur le lit localement et compare son empreinte ; il ne l'exécute pas.</p>
+<label class="filepick">CHOISIR LE FICHIER<input id="payload" type="file" accept=".bin,application/octet-stream"></label>
+<div class="metric"><span>Fichier</span><b id="fileName">Non sélectionné</b></div>
+<div class="metric"><span>Taille</span><b id="fileSize">—</b></div>
+<div class="metric"><span>SHA-256 calculé</span><b id="hash">—</b></div>
+<div class="metric"><span>Résultat</span><b id="integrity" class="neutral">En attente</b></div>
+<button id="verify" class="action" disabled>VÉRIFIER L'EMPREINTE</button>
+<p class="hint">Empreinte attendue issue de l'analyse antérieure de l'ISO. Une correspondance confirme l'identité du fichier, pas sa sûreté ni sa compatibilité.</p>
+</article>
+<article class="panel">
+<div class="panelhead"><div><p class="eyebrow">ÉTAPE 02</p><h2>État du système</h2></div><span class="tag warn">DIAGNOSTIC</span></div>
+<div class="metric"><span>Plateforme détectée</span><b id="platform">Analyse…</b></div>
+<div class="metric"><span>User-Agent</span><b id="ua" class="ua">—</b></div>
+<div class="metric"><span>WebCrypto SHA-256</span><b id="crypto">Analyse…</b></div>
+<div class="metric"><span>Firmware 14.00</span><b class="neutral">Non authentifiable par la page</b></div>
+<div class="metric"><span>Entrée WebKit exploit</span><b class="bad">Non intégrée</b></div>
+<div class="metric"><span>Primitive noyau</span><b class="bad">Non validée</b></div>
+<div class="metric"><span>Transport natif</span><b class="bad">Absent</b></div>
+<div class="metric"><span>Exécution payload</span><b class="bad">Désactivée</b></div>
+</article>
+</section>
+<section class="panel logpanel"><div class="panelhead"><div><p class="eyebrow">CONSOLE</p><h2>Journal local</h2></div><button id="clear" class="clear">EFFACER</button></div><pre id="log" aria-live="polite">[INIT] BONKHEN 14.00 v0.9 chargé.
+[LOCK] Aucune exécution de payload.
+[INFO] Aucun accès réseau distant.</pre></section>
+</main>
+<footer>BONKHEN 14.00 · Portage interface / intégrité uniquement · v0.9</footer>
+</div>
+<script src="app.js"></script>
+</body></html>
