@@ -1,0 +1,33 @@
+{
+  "project": "BONKHEN-14.00",
+  "version": "0.5",
+  "target": {
+    "platform": "PS4",
+    "firmware": "14.00"
+  },
+  "status": "blocked_missing_verified_exploit_chain",
+  "components": {
+    "webkit_entry": {
+      "status": "missing",
+      "required": true
+    },
+    "kernel_primitive": {
+      "status": "missing",
+      "required": true
+    },
+    "kernel_patches_1400": {
+      "status": "reference_available_not_integrated",
+      "source": "https://github.com/Al-Azif/ps4-exploit-kpatches/blob/main/1400.c"
+    },
+    "payload_transport": {
+      "status": "missing_native_transport",
+      "required": true
+    },
+    "hen_payload": {
+      "status": "not_supplied",
+      "required": true
+    }
+  },
+  "launch_enabled": false,
+  "policy": "Never report success unless every required stage returns an explicit validated result."
+}
