@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b10">
+  <title>BONKHEN 14.00 — Console diagnostics</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090b10;--panel:#121722;--line:#263246;--text:#edf2fa;--muted:#9aa8bc;--accent:#70e1c1;--warn:#ffca72}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#1c3440 0,transparent 45%),var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;display:grid;place-items:center;padding:24px}
+    main{width:min(720px,100%)}.tag{color:var(--accent);font-size:.75rem;letter-spacing:.18em;font-weight:800}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:clamp(20px,5vw,36px);box-shadow:0 20px 70px #0008}
+    h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.02;margin:.45rem 0 1rem;letter-spacing:-.05em}p{color:var(--muted)}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}.item{border:1px solid var(--line);border-radius:12px;padding:14px}.label{display:block;color:var(--muted);font-size:.78rem;margin-bottom:5px}.value{font-weight:650;overflow-wrap:anywhere}
+    input{width:100%;padding:13px 14px;border-radius:10px;border:1px solid var(--line);background:#0b1018;color:var(--text);font:inherit;margin-top:8px}button{margin-top:12px;background:var(--accent);color:#07110f;border:0;border-radius:10px;padding:12px 18px;font-weight:800;font:inherit;cursor:pointer}.notice{border-left:3px solid var(--warn);padding:10px 14px;background:#ffca7210;color:#e9d7b5;border-radius:6px;font-size:.9rem}.foot{font-size:.78rem;margin-top:20px}
+    @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<main>
+  <div class="tag">WEBKIT HOST · DIAGNOSTIC MODE</div>
+  <section class="panel">
+    <h1>BONKHEN <span style="color:var(--accent)">14.00</span></h1>
+    <p>Page de diagnostic du navigateur et de la console. Aucun exploit ni payload n'est exécuté.</p>
+    <div class="grid">
+      <div class="item"><span class="label">Appareil détecté</span><span class="value" id="device">Analyse…</span></div>
+      <div class="item"><span class="label">Navigateur</span><span class="value" id="browser">Analyse…</span></div>
+      <div class="item"><span class="label">User-Agent</span><span class="value" id="ua">—</span></div>
+      <div class="item"><span class="label">État firmware</span><span class="value" id="firmware">Non vérifié</span></div>
+    </div>
+    <label for="fw"><strong>Firmware indiqué manuellement</strong></label>
+    <input id="fw" inputmode="decimal" placeholder="Ex. 14.00" autocomplete="off">
+    <button id="check" type="button">Vérifier la saisie</button>
+    <p class="notice" id="status" role="status">Mode diagnostic uniquement : la détection du firmware via le navigateur n'est pas garantie.</p>
+    <p class="foot">BONKHEN · Interface de test. N'exécutez aucun fichier non vérifié sur votre console.</p>
+  </section>
+</main>
+<script>
+(() => {
+  const ua = navigator.userAgent || "";
+  const isPS5 = /PlayStation 5|PS5/i.test(ua);
+  const isPS4 = /PlayStation 4|PS4/i.test(ua);
+  document.getElementById("device").textContent = isPS5 ? "PlayStation 5 (indication UA)" : isPS4 ? "PlayStation 4 (indication UA)" : /PlayStation/i.test(ua) ? "PlayStation (modèle inconnu)" : "Console non identifiée";
+  document.getElementById("browser").textContent = /AppleWebKit/i.test(ua) ? "WebKit" : "Navigateur non identifié";
+  document.getElementById("ua").textContent = ua || "Indisponible";
+  document.getElementById("check").addEventListener("click", () => {
+    const value = document.getElementById("fw").value.trim();
+    const valid = /^\d{1,2}\.\d{1,2}$/.test(value);
+    document.getElementById("firmware").textContent = valid ? value + " (saisi manuellement)" : "Saisie invalide";
+    document.getElementById("status").textContent = valid ? "Version enregistrée à titre indicatif. Elle n'a pas été confirmée par le système." : "Entre une version au format 14.00.";
+  });
+})();
+</script>
+</body>
+</html>
