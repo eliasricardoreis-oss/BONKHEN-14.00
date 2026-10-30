@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10131b">
+<title>BONKHEN 14.00 — Browser</title>
+<style>
+:root{color-scheme:dark;--bg:#10131b;--panel:#191f2b;--line:#30394a;--txt:#f2f5fb;--muted:#aab4c5;--accent:#8d7cff;--warn:#ffca73}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#20283b,var(--bg) 55%);color:var(--txt);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh;padding:28px 16px}.wrap{max-width:760px;margin:auto}header{text-align:center;margin:12px 0 26px}.tag{color:#b8adff;font-size:.78rem;letter-spacing:.16em;font-weight:800}h1{font-size:clamp(2rem,7vw,3.3rem);margin:.2rem 0}header p,.muted{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 14px 40px #0003}.status{display:flex;gap:12px;align-items:center}.dot{width:10px;height:10px;border-radius:50%;background:var(--warn);flex:none}.status strong{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.metric{background:#111722;border:1px solid var(--line);padding:13px;border-radius:12px;min-width:0}.metric small{display:block;color:var(--muted)}.metric b{overflow-wrap:anywhere}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}button,.filelabel{border:0;border-radius:12px;padding:13px 17px;font-weight:750;font-size:1rem;background:var(--accent);color:white;cursor:pointer}.secondary{background:#30394a}.disabled{background:#39404d;color:#aeb6c3;cursor:not-allowed;width:100%;margin-top:12px}input[type=file]{position:absolute;left:-9999px}.filelabel{display:inline-block}.notice{border-left:3px solid var(--warn);padding:10px 13px;background:#332a1b;border-radius:8px;color:#ffe0ad}.ok{color:#9be6b0}.bad{color:#ffadad}code{overflow-wrap:anywhere;color:#d4ccff}footer{text-align:center;color:var(--muted);font-size:.85rem;margin:25px 0}@media(max-width:520px){.grid{grid-template-columns:1fr}.panel{padding:16px}}
+</style>
+</head>
+<body><main class="wrap">
+<header><div class="tag">PROJET COMMUNAUTAIRE</div><h1>BONKHEN <span style="color:#a99cff">14.00</span></h1><p>Interface navigateur autonome · diagnostic et vérification locale</p></header>
+<section class="panel"><div class="status"><span class="dot"></span><div><strong>Injection non disponible sur cette version</strong><span class="muted">La page fonctionne dans le navigateur, mais aucune chaîne d’exploitation complète et vérifiée pour le firmware 14.00 n’est intégrée.</span></div></div><button class="disabled" disabled title="Désactivé tant qu'une chaîne complète n'est pas validée">INJECTER HEN — NON DISPONIBLE</button></section>
+<section class="panel"><h2>1. Vérifier le fichier HEN</h2><p class="muted">Sélectionne ton fichier local hen.bin. Il reste sur ton appareil : cette page ne l’envoie à aucun serveur et ne l’exécute pas.</p><input id="file" type="file" accept=".bin,application/octet-stream"><label class="filelabel" for="file">Choisir hen.bin</label><div id="fileInfo" class="muted" style="margin-top:14px">Aucun fichier sélectionné.</div><div class="grid" style="margin-top:14px"><div class="metric"><small>SHA-256 calculé</small><b id="hash">—</b></div><div class="metric"><small>Comparaison</small><b id="match">En attente</b></div></div></section>
+<section class="panel"><h2>2. Diagnostic navigateur</h2><div class="grid"><div class="metric"><small>Contexte sécurisé</small><b id="secure">—</b></div><div class="metric"><small>Web Crypto</small><b id="crypto">—</b></div><div class="metric"><small>Navigateur</small><b id="ua">—</b></div><div class="metric"><small>Firmware console</small><b>Non détectable depuis une page web</b></div></div><div class="actions"><button id="diag" class="secondary">Actualiser le diagnostic</button></div></section>
+<section class="panel"><h2>Pourquoi le bouton reste désactivé ?</h2><div class="notice">Un contrôle SHA-256 valide seulement l’intégrité du fichier. Il ne prouve ni la compatibilité avec le firmware 14.00, ni l’existence d’un exploit WebKit, d’une primitive kernel ou d’un transport natif permettant l’injection.</div><p class="muted">Cette interface n’exécute aucun payload, ne lance aucune commande système et ne contacte aucun hôte distant. Le bouton ne pourra être activé qu’après intégration et validation indépendante de tous les composants nécessaires.</p></section>
+<footer>BONKHEN-14.00 · v1.0 · outil de diagnostic local</footer>
+</main>
+<script>
+'use strict';
+const EXPECTED='29ec095fbede651e29954de43411599093138791e62105aaee6fdced58edec06';
+const $=id=>document.getElementById(id);
+function diagnostic(){
+ $('secure').textContent=window.isSecureContext?'Oui':'Non (HTTPS requis pour Web Crypto)';
+ $('crypto').textContent=!!(window.crypto&&crypto.subtle)?'Disponible':'Indisponible';
+ $('ua').textContent=navigator.userAgent;
+}
+$('diag').addEventListener('click',diagnostic);
+$('file').addEventListener('change',async e=>{
+ const f=e.target.files&&e.target.files[0];$('hash').textContent='—';$('match').textContent='Calcul…';
+ if(!f){$('fileInfo').textContent='Aucun fichier sélectionné.';$('match').textContent='En attente';return}
+ $('fileInfo').textContent=f.name+' · '+f.size.toLocaleString('fr-FR')+' octets';
+ if(!crypto.subtle){$('hash').textContent='Web Crypto indisponible';$('match').textContent='Impossible';return}
+ try{
+  const digest=await crypto.subtle.digest('SHA-256',await f.arrayBuffer());
+  const hex=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+  $('hash').textContent=hex;
+  const valid=hex===EXPECTED;
+  $('match').textContent=valid?'Correspondance avec la référence':'Ne correspond pas';
+  $('match').className=valid?'ok':'bad';
+ }catch(err){$('hash').textContent='Erreur de lecture';$('match').textContent=String(err)}
+});
+diagnostic();
+</script></body></html>
