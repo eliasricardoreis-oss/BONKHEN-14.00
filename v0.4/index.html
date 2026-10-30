@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#090d16"><title>BONKHEN 14.00 — WebKit Host</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+<header class="topbar"><div class="brand"><div class="logo">B</div><div><div class="brandname">BONKHEN <span>HOST</span></div><div class="sub">PS4 WEBKIT · BUILD 14.00</div></div></div><div class="target"><i></i> FIRMWARE CIBLE <b>14.00</b></div></header>
+<main>
+<section class="hero"><div class="eyebrow">LOCAL HOST / DIAGNOSTIC</div><h1>HEN <em>14.00</em></h1><p>Interface WebKit dédiée. Les ressources BONKHEN sont conservées localement et contrôlées sans être exécutées.</p><div class="statusline"><span class="dot amber"></span><b>MODE DIAGNOSTIC</b><span class="sep">/</span><span>Chaîne WebKit non validée</span></div></section>
+<section class="grid">
+<article class="panel mainpanel"><div class="panelhead"><div><div class="eyebrow">MODULE PRINCIPAL</div><h2>Bonk HEN</h2></div><span class="pill warn">VERROUILLÉ</span></div>
+<div class="orb"><div class="orbinner"><span>14.00</span><small>PS4</small></div></div>
+<div class="notice"><b>Chargement HEN désactivé</b><p>Le disque source est une application BD-J. Son code Java et ses appels natifs ne peuvent pas être exécutés directement par WebKit. Aucun exploit WebKit/Kernel 14.00 n'a été validé dans les fichiers fournis.</p></div>
+<button class="primary" id="launch" disabled aria-disabled="true">HEN NON DISPONIBLE SUR CE HOST</button>
+<div class="smallnote">Aucun payload n'est lancé, aucune mémoire système n'est modifiée.</div>
+</article>
+<article class="panel"><div class="eyebrow">CONTRÔLES LOCAUX</div><h2>Diagnostic</h2><p class="muted">Vérifie que les ressources extraites sont présentes sur ce serveur.</p>
+<button class="action" id="check">VÉRIFIER LES RESSOURCES <span>↻</span></button>
+<button class="action secondary" id="showlog">AFFICHER LE JOURNAL <span>＋</span></button>
+<div class="metric"><span>Console détectée</span><b id="consoleState">Analyse…</b></div>
+<div class="metric"><span>Firmware navigateur</span><b id="firmwareState">Non déterminable</b></div>
+<div class="metric"><span>Navigateur</span><b id="browserCapabilities">Analyse…</b></div>
+<div class="metric"><span>User-Agent</span><b id="browserState" class="ua">Analyse…</b></div>
+<div class="metric"><span>Ressources HEN</span><b id="resourceState">Non vérifiées</b></div>
+<div class="metric"><span>Firmware cible</span><b>14.00 uniquement</b></div>
+<div class="metric"><span>Réseau distant</span><b class="good">Désactivé</b></div>
+<div class="metric"><span>Exécution native</span><b class="bad">Désactivée</b></div>
+</article>
+</section>
+<section class="panel logpanel" id="logpanel"><div class="panelhead"><div><div class="eyebrow">CONSOLE</div><h2>Journal système</h2></div><button class="clear" id="clearlog">EFFACER</button></div><pre id="log">[BONKHEN] Host diagnostic initialisé.
+[INFO] Firmware cible configuré : PS4 14.00.
+[INFO] Aucun appel réseau externe.
+[ATTENTION] Le portage BD-J vers WebKit n'est pas réalisé.
+[LOCK] Exécution HEN désactivée.</pre></section>
+<footer>BONKHEN 14.00 · Diagnostic uniquement · v0.4</footer>
+</main></div><script src="app.js"></script></body></html>
